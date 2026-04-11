@@ -1,116 +1,67 @@
 # JharVision
 
-## 🌍 Vision
+JharVision is an open-source tech platform for Jharkhand built with Next.js 14, TypeScript, Tailwind CSS, and a Supabase-ready foundation.
 
-JharVision is not just a project — it’s a mission to build a strong tech ecosystem in Jharkhand.
+## Vision
 
-We aim to bring students, developers, and innovators together to create real impact for society.
+JharVision aims to make Jharkhand's tech ecosystem more visible and more participatory by bringing together:
 
----
+- Tech updates
+- Startup stories
+- Open-source collaboration
+- Contributor-friendly product building
 
-## 🎯 Why Contribute?
+## Version 1 Features
 
-- Work on a real-world project
-- Gain practical experience
-- Build a strong portfolio
-- Get your name featured on the platform
-- Be part of Jharkhand’s tech movement
-
----
-
-## 🤝 How to Contribute
-
-1. Fork this repository
-2. Make your changes
-3. Create a Pull Request (PR)
-4. Wait for review
-
-We welcome all contributors 💙
-
----
-
-## 💬 Community
-
-Join our WhatsApp Community: [Your Link]
-
-Let’s build together 🚀
-JharVision is a production-ready Next.js App Router starter for an open-source tech platform focused on Jharkhand. The project ships with a responsive landing page, static blog system, Tailwind styling, SEO defaults, and a basic Supabase-ready setup for future expansion.
+- Responsive home page with hero, about, and CTA sections
+- Blog listing page at `/blog`
+- Dynamic blog detail pages at `/blog/[slug]`
+- Contribute page at `/contribute`
+- Reusable UI components and clean `src/`-based structure
+- Static blog data with room to grow into Supabase or CMS-backed content
 
 ## Tech Stack
 
-- Next.js 14+ with App Router
+- Next.js 14+ App Router
 - TypeScript
 - Tailwind CSS
-- Supabase client setup
+- Supabase JavaScript client
 
 ## Project Structure
 
 ```text
-jharvision/
-|-- public/
-|-- src/
-|   |-- app/
-|   |   |-- blog/
-|   |   |   |-- [slug]/
-|   |   |   |   `-- page.tsx
-|   |   |   `-- page.tsx
-|   |   |-- contribute/
-|   |   |   `-- page.tsx
-|   |   |-- globals.css
-|   |   |-- icon.svg
-|   |   |-- layout.tsx
-|   |   |-- not-found.tsx
-|   |   |-- page.tsx
-|   |   |-- robots.ts
-|   |   `-- sitemap.ts
-|   |-- components/
-|   |   |-- BlogCard.tsx
-|   |   |-- CTASection.tsx
-|   |   |-- Footer.tsx
-|   |   |-- HeroSection.tsx
-|   |   |-- Navbar.tsx
-|   |   `-- SectionHeading.tsx
-|   |-- data/
-|   |   `-- blogs.ts
-|   `-- lib/
-|       |-- blogs.ts
-|       |-- site.ts
-|       |-- supabase.ts
-|       `-- utils.ts
-|-- .env.example
-|-- .eslintrc.json
-|-- .gitignore
-|-- next.config.mjs
-|-- package.json
-|-- postcss.config.js
-|-- tailwind.config.ts
-`-- tsconfig.json
+src/
+|-- app/
+|   |-- blog/
+|   |   |-- [slug]/page.tsx
+|   |   `-- page.tsx
+|   |-- contribute/page.tsx
+|   |-- globals.css
+|   |-- icon.svg
+|   |-- layout.tsx
+|   |-- not-found.tsx
+|   |-- page.tsx
+|   |-- robots.ts
+|   `-- sitemap.ts
+|-- components/
+|-- data/
+`-- lib/
 ```
 
 ## Getting Started
 
-1. Install dependencies:
-
 ```bash
 npm install
-```
-
-2. Copy the environment template:
-
-```bash
 Copy-Item .env.example .env.local
-```
-
-3. Start the development server:
-
-```bash
 npm run dev
 ```
 
-4. Open `http://localhost:3000`
+Open `http://localhost:3000` in your browser.
 
-## Future Extensions
+## Contributing
 
-- Connect the blog system to Supabase or a CMS
-- Add GitHub-based contributor profiles and contribution tracking
-- Add authentication, admin workflows, and article publishing tools
+We welcome developers, designers, writers, and community contributors. The codebase is intentionally structured to be beginner-friendly and ready for future GitHub-based contributor workflows.
+
+## License
+
+MIT
