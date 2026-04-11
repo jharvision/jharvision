@@ -8,6 +8,7 @@ export const siteConfig = {
   links: {
     home: "/",
     blog: "/blog",
+    techUpdates: "/tech-updates",
     contributors: "/contributors",
     contribute: "/contribute",
     github: "https://github.com/jharvision/jharvision"
@@ -16,6 +17,7 @@ export const siteConfig = {
 
 export const navigationLinks = [
   { href: siteConfig.links.home, label: "Home" },
+  { href: siteConfig.links.techUpdates, label: "Tech Updates" },
   { href: siteConfig.links.blog, label: "Blog" },
   { href: siteConfig.links.contributors, label: "Contributors" },
   { href: siteConfig.links.contribute, label: "Contribute" }
