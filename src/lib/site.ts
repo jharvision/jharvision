@@ -9,7 +9,8 @@ export const siteConfig = {
     home: "/",
     blog: "/blog",
     contributors: "/contributors",
-    contribute: "/contribute"
+    contribute: "/contribute",
+    github: "https://github.com/jharvision/jharvision"
   }
 };
 
