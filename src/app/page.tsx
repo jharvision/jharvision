@@ -1,5 +1,4 @@
-
-import Link from 'next/link'; // Pehle ye import karein
+import Link from "next/link";
 
 import { Suspense } from "react";
 
@@ -12,6 +11,26 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { getFeaturedBlogs } from "@/lib/blogs";
 
 const featuredBlogs = getFeaturedBlogs();
+const platformCards = [
+  {
+    title: "Tech updates",
+    href: "/tech-updates",
+    description:
+      "Track emerging ideas, ecosystem signals, and product stories that matter to builders in Jharkhand."
+  },
+  {
+    title: "Startup spotlight",
+    href: "/blog",
+    description:
+      "Bring attention to local founders, early traction, and practical lessons from regional innovation."
+  },
+  {
+    title: "Contributor ready",
+    href: "/contribute",
+    description:
+      "Create a clear path for writers, developers, designers, and community volunteers to participate."
+  }
+] as const;
 
 export default function HomePage() {
   return (
@@ -27,85 +46,28 @@ export default function HomePage() {
           />
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                title: "Tech updates",
-                description:
-                  "Track emerging ideas, ecosystem signals, and product stories that matter to builders in Jharkhand."
-              },
-              {
-                title: "Startup spotlight",
-                description:
-                  "Bring attention to local founders, early traction, and practical lessons from regional innovation."
-              },
-              {
-                title: "Contributor ready",
-                description:
-                  "Create a clear path for writers, developers, designers, and community volunteers to participate."
-              }
-            ].map((item) => (
-              <div
+            {platformCards.map((item) => (
+              <Link
                 key={item.title}
-                className="rounded-[1.75rem] border border-brand-line bg-white/90 p-6 shadow-sm"
+                href={item.href}
+                className="group block no-underline"
               >
-                <h3 className="text-2xl font-semibold tracking-tight text-brand-ink">
-                  {item.title}
-                </h3>
-                <p className="mt-4 text-base leading-7 text-brand-muted">
-                  {item.description}
-                </p>
-              </div>
+                <div className="h-full rounded-[1.75rem] border border-brand-line bg-white/90 p-6 shadow-sm transition-all duration-300 hover:border-brand-ink/20 hover:shadow-md active:scale-[0.98]">
+                  <h3 className="text-2xl font-semibold tracking-tight text-brand-ink transition group-hover:text-brand-green">
+                    {item.title}
+                  </h3>
+                  <p className="mt-4 text-base leading-7 text-brand-muted">
+                    {item.description}
+                  </p>
+                </div>
+              </Link>
             ))}
           </div>
         </section>
 
-
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {[
-            {
-              title: "Tech updates",
-              href: "/tech-updates", // Link destination
-              description:
-                "Track emerging ideas, ecosystem signals, and product stories that matter to builders in Jharkhand."
-            },
-            {
-              title: "Startup spotlight",
-              href: "/", // Link destination
-              description:
-                "Bring attention to local founders, early traction, and practical lessons from regional innovation."
-            },
-            {
-              title: "Contributor ready",
-              href: "/contribute", // Link destination
-              description:
-                "Create a clear path for writers, developers, designers, and community volunteers to participate."
-            }
-          ].map((item) => (
-            /* Link component ko wrap kiya aur cursor-default rakha taaki standard link feel na aaye */
-            <Link 
-              key={item.title} 
-              href={item.href} 
-              className="block no-underline group"
-            >
-              <div
-                className="h-full rounded-[1.75rem] border border-brand-line bg-white/90 p-6 shadow-sm transition-all duration-300 hover:border-brand-ink/20 hover:shadow-md active:scale-[0.98]"
-              >
-                <h3 className="text-2xl font-semibold tracking-tight text-brand-ink">
-                  {item.title}
-                </h3>
-                <p className="mt-4 text-base leading-7 text-brand-muted">
-                  {item.description}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
         <Suspense fallback={<ContributorsPreviewSkeleton />}>
           <ContributorsPreview />
         </Suspense>
-
 
         <section className="pb-20">
           <SectionHeading
@@ -125,4 +87,4 @@ export default function HomePage() {
       </div>
     </>
   );
-
+}
