@@ -4,7 +4,7 @@ import { getAllBlogs } from "@/lib/blogs";
 import { siteConfig } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["", "/blog", "/contribute"].map((path) => ({
+  const staticPages = ["", "/blog", "/contributors", "/contribute"].map((path) => ({
     url: `${siteConfig.url}${path}`,
     lastModified: new Date()
   }));
@@ -16,4 +16,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...staticPages, ...blogPages];
 }
-
