@@ -3,11 +3,19 @@ import Link from "next/link";
 type CTASectionProps = {
   title?: string;
   description?: string;
+  primaryActionLabel?: string;
+  primaryActionHref?: string;
+  secondaryActionLabel?: string | null;
+  secondaryActionHref?: string | null;
 };
 
 export function CTASection({
   title = "Help shape the public tech conversation in Jharkhand.",
-  description = "Whether you write, design, build, or organize communities, JharVision is designed to grow with contributors who care about meaningful local progress."
+  description = "Whether you write, design, build, or organize communities, JharVision is designed to grow with contributors who care about meaningful local progress.",
+  primaryActionLabel = "View contribution paths",
+  primaryActionHref = "/contribute",
+  secondaryActionLabel = "Read latest stories",
+  secondaryActionHref = "/blog"
 }: CTASectionProps) {
   return (
     <section className="rounded-[2rem] border border-brand-blue/15 bg-gradient-to-br from-brand-blue via-[#1f7acc] to-brand-green px-6 py-14 text-white shadow-soft sm:px-10">
@@ -25,20 +33,21 @@ export function CTASection({
         </div>
         <div className="flex flex-col gap-4 sm:flex-row">
           <Link
-            href="/contribute"
+            href={primaryActionHref}
             className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-blue transition hover:bg-brand-surface"
           >
-            View contribution paths
+            {primaryActionLabel}
           </Link>
-          <Link
-            href="/blog"
-            className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-          >
-            Read latest stories
-          </Link>
+          {secondaryActionLabel && secondaryActionHref ? (
+            <Link
+              href={secondaryActionHref}
+              className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+            >
+              {secondaryActionLabel}
+            </Link>
+          ) : null}
         </div>
       </div>
     </section>
   );
 }
-

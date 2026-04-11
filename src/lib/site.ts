@@ -8,6 +8,7 @@ export const siteConfig = {
   links: {
     home: "/",
     blog: "/blog",
+    contributors: "/contributors",
     contribute: "/contribute"
   }
 };
@@ -15,6 +16,6 @@ export const siteConfig = {
 export const navigationLinks = [
   { href: siteConfig.links.home, label: "Home" },
   { href: siteConfig.links.blog, label: "Blog" },
+  { href: siteConfig.links.contributors, label: "Contributors" },
   { href: siteConfig.links.contribute, label: "Contribute" }
 ];
-
