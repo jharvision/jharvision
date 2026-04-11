@@ -1,3 +1,5 @@
+
+
 import { blogs } from "@/data/blogs";
 
 export function getAllBlogs() {
@@ -17,3 +19,12 @@ export function getBlogBySlug(slug: string) {
   return blogs.find((post) => post.slug === slug);
 }
 
+/**
+ * Naya Function: Category ke base par blogs filter karne ke liye
+ * @param category - 'tech', 'startup', ya 'contributor'
+ */
+export function getBlogsByCategory(category: string) {
+  return getAllBlogs().filter(
+    (post) => post.category?.toLowerCase() === category.toLowerCase()
+  );
+}

@@ -1,3 +1,6 @@
+
+
+import Link from 'next/link'; // Pehle ye import karein
 import { BlogCard } from "@/components/BlogCard";
 import { CTASection } from "@/components/CTASection";
 import { HeroSection } from "@/components/HeroSection";
@@ -22,31 +25,40 @@ export default function HomePage() {
           {[
             {
               title: "Tech updates",
+              href: "/tech-updates", // Link destination
               description:
                 "Track emerging ideas, ecosystem signals, and product stories that matter to builders in Jharkhand."
             },
             {
               title: "Startup spotlight",
+              href: "/", // Link destination
               description:
                 "Bring attention to local founders, early traction, and practical lessons from regional innovation."
             },
             {
               title: "Contributor ready",
+              href: "/contribute", // Link destination
               description:
                 "Create a clear path for writers, developers, designers, and community volunteers to participate."
             }
           ].map((item) => (
-            <div
-              key={item.title}
-              className="rounded-[1.75rem] border border-brand-line bg-white/90 p-6 shadow-sm"
+            /* Link component ko wrap kiya aur cursor-default rakha taaki standard link feel na aaye */
+            <Link 
+              key={item.title} 
+              href={item.href} 
+              className="block no-underline group"
             >
-              <h3 className="text-2xl font-semibold tracking-tight text-brand-ink">
-                {item.title}
-              </h3>
-              <p className="mt-4 text-base leading-7 text-brand-muted">
-                {item.description}
-              </p>
-            </div>
+              <div
+                className="h-full rounded-[1.75rem] border border-brand-line bg-white/90 p-6 shadow-sm transition-all duration-300 hover:border-brand-ink/20 hover:shadow-md active:scale-[0.98]"
+              >
+                <h3 className="text-2xl font-semibold tracking-tight text-brand-ink">
+                  {item.title}
+                </h3>
+                <p className="mt-4 text-base leading-7 text-brand-muted">
+                  {item.description}
+                </p>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -69,4 +81,3 @@ export default function HomePage() {
     </div>
   );
 }
-
