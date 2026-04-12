@@ -3,7 +3,7 @@ export const siteConfig = {
   title: "JharVision | Open Tech Platform for Jharkhand",
   description:
     "JharVision highlights tech stories, startup momentum, and open collaboration across Jharkhand.",
-  url: "https://jharvision.org",
+  url: "https://jharvision.com",
   ogImage: "/icon.svg",
   links: {
     home: "/",
