@@ -26,6 +26,9 @@ export function Footer() {
                   {link.label}
                 </Link>
               ))}
+              <Link href="/sitemap.xml" className="transition hover:text-brand-blue">
+                Sitemap
+              </Link>
             </div>
           </div>
           <div>
@@ -48,4 +51,3 @@ export function Footer() {
     </footer>
   );
 }
-
