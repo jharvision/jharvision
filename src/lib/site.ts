@@ -4,7 +4,7 @@ export const siteConfig = {
   description:
     "JharVision highlights tech stories, startup momentum, and open collaboration across Jharkhand.",
   url: "https://jharvision.com",
-  ogImage: "/icon.svg",
+  ogImage: "/favicon.png",
   links: {
     home: "/",
     blog: "/blog",
