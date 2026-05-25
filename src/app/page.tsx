@@ -6,6 +6,7 @@ import { BlogCard } from "@/components/BlogCard";
 import { CTASection } from "@/components/CTASection";
 import { ContributorsPreview } from "@/components/contributors/ContributorsPreview";
 import { ContributorsPreviewSkeleton } from "@/components/contributors/ContributorsSkeleton";
+import { EcosystemDiscoverySection } from "@/components/EcosystemDiscoverySection";
 import { HeroSection } from "@/components/HeroSection";
 import { SectionHeading } from "@/components/SectionHeading";
 import { getFeaturedBlogs } from "@/lib/blogs";
@@ -36,6 +37,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <EcosystemDiscoverySection />
 
       <div className="container-width">
         <section id="platform-overview" className="section-spacing">

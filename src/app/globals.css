@@ -45,3 +45,316 @@ a {
   }
 }
 
+@layer utilities {
+  @keyframes hero-particle-drift {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 26px, 0) scale(0.5);
+    }
+    16%,
+    72% {
+      opacity: 0.82;
+    }
+    100% {
+      opacity: 0;
+      transform: translate3d(28px, -88px, 0) scale(1.05);
+    }
+  }
+
+  @keyframes hero-nebula-drift {
+    0%,
+    100% {
+      opacity: 0.52;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      opacity: 0.88;
+      transform: translate3d(36px, -22px, 0) scale(1.08);
+    }
+  }
+
+  @keyframes hero-orbit-spin {
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+  @keyframes hero-scan-pulse {
+    0% {
+      opacity: 0.05;
+      transform: translate(-50%, -50%) scale(0.86);
+    }
+    45% {
+      opacity: 0.34;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.22);
+    }
+  }
+
+  @keyframes hero-holo-scan {
+    0%,
+    100% {
+      opacity: 0;
+      transform: translate3d(-14px, -18px, 0) scaleX(0.72);
+    }
+    45% {
+      opacity: 0.9;
+    }
+    100% {
+      transform: translate3d(20px, 38px, 0) scaleX(1);
+    }
+  }
+
+  @keyframes hero-network-pulse {
+    0%,
+    100% {
+      opacity: 0.12;
+      filter: blur(0);
+    }
+    50% {
+      opacity: 0.72;
+      filter: blur(0.4px);
+    }
+  }
+
+  @keyframes hero-cta-sheen {
+    0% {
+      transform: translateX(-130%) skewX(-20deg);
+    }
+    42%,
+    100% {
+      transform: translateX(230%) skewX(-20deg);
+    }
+  }
+
+  @keyframes hero-nav-pulse {
+    0%,
+    100% {
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72), 0 0 34px rgba(34, 211, 238, 0.32);
+    }
+    50% {
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.86), 0 0 58px rgba(52, 211, 153, 0.5);
+    }
+  }
+
+  @keyframes hero-reveal {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 32px, 0);
+      filter: blur(16px);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes hero-nav-enter {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, -18px, 0);
+      filter: blur(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes hero-visual-float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate3d(0, -18px, 0) rotate(0.6deg);
+    }
+  }
+
+  @keyframes hero-light-beam {
+    0%,
+    100% {
+      opacity: 0.7;
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      opacity: 1;
+      transform: translate3d(-28px, 16px, 0);
+    }
+  }
+
+  @keyframes jv-vision-rainbow {
+    0%,
+    100% {
+      fill: #0aa78d;
+      filter: drop-shadow(0 0 0 rgba(10, 167, 141, 0));
+    }
+    18% {
+      fill: #22c55e;
+      filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.36));
+    }
+    34% {
+      fill: #06b6d4;
+      filter: drop-shadow(0 0 9px rgba(6, 182, 212, 0.38));
+    }
+    50% {
+      fill: #38bdf8;
+      filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.42));
+    }
+    66% {
+      fill: #8b5cf6;
+      filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.34));
+    }
+    82% {
+      fill: #f59e0b;
+      filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.32));
+    }
+  }
+
+  @keyframes jv-node-pulse {
+    0%,
+    100% {
+      opacity: 0.08;
+      transform: scale(0.7);
+      transform-origin: center;
+    }
+    50% {
+      opacity: 0.28;
+      transform: scale(1.45);
+      transform-origin: center;
+    }
+  }
+
+  @keyframes ecosystem-orbit-spin {
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+  .hero-particle {
+    animation: hero-particle-drift 10s linear infinite;
+  }
+
+  .hero-nebula {
+    animation: hero-nebula-drift 15s ease-in-out infinite;
+  }
+
+  .hero-nebula-slow {
+    animation-duration: 19s;
+    animation-delay: -7s;
+  }
+
+  .hero-orbit {
+    animation: hero-orbit-spin 24s linear infinite;
+    border-style: dashed;
+  }
+
+  .hero-orbit-reverse {
+    animation-duration: 38s;
+    animation-direction: reverse;
+  }
+
+  .hero-scan-ring {
+    animation: hero-scan-pulse 3.8s ease-out infinite;
+  }
+
+  .hero-scan-ring-late {
+    animation-delay: -1.6s;
+  }
+
+  .hero-holo-slice {
+    animation: hero-holo-scan 4.8s ease-in-out infinite;
+  }
+
+  .hero-holo-slice-late {
+    animation-delay: -2.1s;
+  }
+
+  .hero-network-line {
+    animation: hero-network-pulse 2.8s ease-in-out infinite;
+  }
+
+  .hero-network-line-late {
+    animation-delay: -1.2s;
+  }
+
+  .hero-cta-shine::before {
+    animation: hero-cta-sheen 3.2s ease-in-out infinite;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.62), transparent);
+    content: "";
+    inset: 0 auto 0 -30%;
+    position: absolute;
+    width: 34%;
+  }
+
+  .hero-nav-pulse {
+    animation: hero-nav-pulse 3.8s ease-in-out infinite;
+  }
+
+  .hero-reveal {
+    animation: hero-reveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hero-visual-reveal {
+    animation: hero-reveal 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+  }
+
+  .hero-nav-enter {
+    animation: hero-nav-enter 0.58s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hero-visual-float {
+    animation: hero-visual-float 7.5s ease-in-out infinite;
+  }
+
+  .hero-light-beam {
+    animation: hero-light-beam 13s ease-in-out infinite;
+  }
+
+  .hero-light-beam-alt {
+    animation-delay: -6s;
+  }
+
+  .jv-vision-letter {
+    animation: jv-vision-rainbow 1.1s ease-in-out infinite;
+    fill: #0aa78d;
+  }
+
+  .jv-node-pulse {
+    animation: jv-node-pulse 1.8s ease-in-out infinite;
+  }
+
+  .ecosystem-orbit {
+    animation: ecosystem-orbit-spin 28s linear infinite;
+  }
+
+  .ecosystem-orbit-reverse {
+    animation-duration: 42s;
+    animation-direction: reverse;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-particle,
+    .hero-nebula,
+    .hero-orbit,
+    .hero-scan-ring,
+    .hero-holo-slice,
+    .hero-network-line,
+    .hero-cta-shine::before,
+    .hero-nav-pulse,
+    .hero-reveal,
+    .hero-visual-reveal,
+    .hero-nav-enter,
+    .hero-visual-float,
+    .hero-light-beam,
+    .jv-vision-letter,
+    .jv-node-pulse,
+    .ecosystem-orbit {
+      animation: none;
+    }
+  }
+}

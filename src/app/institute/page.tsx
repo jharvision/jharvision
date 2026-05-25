@@ -160,6 +160,7 @@
 
 "use client";
 
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { MapPin, Search, GraduationCap, Building2, Loader2, AlertCircle, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -290,10 +291,13 @@ export default function InstitutesPage() {
                   {/* Image Container */}
                   <div className="relative h-48 w-full overflow-hidden rounded-[2rem] bg-gray-50">
                     {college.image ? (
-                      <img 
-                        src={college.image} 
-                        alt={college.name} 
-                        className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
+                      <Image
+                        src={college.image}
+                        alt={college.name}
+                        fill
+                        unoptimized
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        className="object-cover grayscale-[20%] transition-all duration-700 group-hover:grayscale-0"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-gray-200">

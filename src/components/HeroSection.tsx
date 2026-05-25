@@ -1,279 +1,153 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import { LazyMotion, domAnimation, m, useReducedMotion } from "framer-motion";
 import {
-  AnimatePresence,
-  LazyMotion,
-  domAnimation,
-  m,
-  useReducedMotion
-} from "framer-motion";
-import { useEffect, useMemo, useRef, useState } from "react";
+  ArrowRight,
+  Building2,
+  CalendarDays,
+  Database,
+  Landmark,
+  MapPin,
+  Rocket,
+  ShieldCheck,
+  Users
+} from "lucide-react";
 
-import {
-  JHARKHAND_FOUNDATION_LABEL,
-  getJourneyBreakdown
-} from "@/lib/journey";
+const stats = [
+  { label: "Colleges & Universities", value: "250+", icon: Landmark },
+  { label: "Startups & Innovations", value: "120+", icon: Rocket },
+  { label: "Builders & Tech Talent", value: "800+", icon: Users },
+  { label: "Events & Hackathons", value: "50+", icon: CalendarDays }
+] as const;
 
-const TIMELINE_DURATION_MS = 1800;
-const LIVE_TIMER_DELAY_MS = 180;
-
-function padTimeUnit(value: number) {
-  return value.toString().padStart(2, "0");
-}
+const trustItems = [
+  { title: "Verified Listings", subtitle: "Trusted & Verified", icon: ShieldCheck },
+  { title: "Jharkhand Focused", subtitle: "Discover Local", icon: MapPin },
+  { title: "Real Ecosystem Data", subtitle: "Always Updated", icon: Database },
+  { title: "Community Powered", subtitle: "Built Together", icon: Users }
+] as const;
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
-  const currentYear = useMemo(() => new Date().getFullYear(), []);
-  const timelineMilestones = useMemo(
-    () => Array.from(new Set([2000, 2010, 2020, currentYear])),
-    [currentYear]
-  );
-
-  const [timelineIndex, setTimelineIndex] = useState(0);
-  const [showLiveTimer, setShowLiveTimer] = useState(prefersReducedMotion);
-  const [journeyTime, setJourneyTime] = useState(() => getJourneyBreakdown(new Date()));
-
-  const timelineFrameRef = useRef<number | null>(null);
-  const liveTimerTimeoutRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      setTimelineIndex(timelineMilestones.length - 1);
-      setShowLiveTimer(true);
-      return;
-    }
-
-    const animationStart = performance.now();
-    let lastStep = -1;
-
-    const animateTimeline = (timestamp: number) => {
-      const elapsed = timestamp - animationStart;
-      const progress = Math.min(elapsed / TIMELINE_DURATION_MS, 1);
-      const nextStep = Math.min(
-        timelineMilestones.length - 1,
-        Math.floor(progress * timelineMilestones.length)
-      );
-
-      if (nextStep !== lastStep) {
-        lastStep = nextStep;
-        setTimelineIndex(nextStep);
-      }
-
-      if (progress < 1) {
-        timelineFrameRef.current = window.requestAnimationFrame(animateTimeline);
-        return;
-      }
-
-      liveTimerTimeoutRef.current = window.setTimeout(() => {
-        setShowLiveTimer(true);
-      }, LIVE_TIMER_DELAY_MS);
-    };
-
-    timelineFrameRef.current = window.requestAnimationFrame(animateTimeline);
-
-    return () => {
-      if (timelineFrameRef.current) {
-        window.cancelAnimationFrame(timelineFrameRef.current);
-      }
-
-      if (liveTimerTimeoutRef.current) {
-        window.clearTimeout(liveTimerTimeoutRef.current);
-      }
-    };
-  }, [prefersReducedMotion, timelineMilestones.length]);
-
-  useEffect(() => {
-    if (!showLiveTimer) {
-      return;
-    }
-
-    const timerId = window.setInterval(() => {
-      setJourneyTime(getJourneyBreakdown(new Date()));
-    }, 1000);
-
-    return () => window.clearInterval(timerId);
-  }, [showLiveTimer]);
-
-  const durationLabel = useMemo(
-    () =>
-      `${journeyTime.years} Years • ${journeyTime.months} Months • ${journeyTime.days} Days`,
-    [journeyTime.days, journeyTime.months, journeyTime.years]
-  );
-
-  const clockLabel = useMemo(
-    () =>
-      `${padTimeUnit(journeyTime.hours)}:${padTimeUnit(journeyTime.minutes)}:${padTimeUnit(journeyTime.seconds)}`,
-    [journeyTime.hours, journeyTime.minutes, journeyTime.seconds]
-  );
 
   return (
     <LazyMotion features={domAnimation}>
-      <section className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 overflow-hidden bg-[#183627] text-[#f8f0e3]">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(214,168,87,0.18),transparent_18%),radial-gradient(circle_at_78%_20%,rgba(158,78,45,0.18),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(247,240,227,0.08),transparent_28%),linear-gradient(135deg,#173628_0%,#1f4130_48%,#4f2d1d_100%)]" />
-          <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(247,240,227,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(247,240,227,0.08)_1px,transparent_1px)] [background-size:52px_52px]" />
-          <div className="absolute inset-0 opacity-[0.07] [background-image:radial-gradient(rgba(247,240,227,0.18)_0.8px,transparent_0.8px)] [background-size:12px_12px]" />
+      <section className="relative left-1/2 right-1/2 min-h-screen w-screen -translate-x-1/2 overflow-hidden bg-[#020b12] text-white">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_73%_45%,rgba(15,243,207,0.16),transparent_34%),radial-gradient(circle_at_22%_12%,rgba(56,189,248,0.08),transparent_28%),linear-gradient(135deg,#020912_0%,#03121c_48%,#02070d_100%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_42%,rgba(0,0,0,0.72)_100%)]" />
+        <div className="pointer-events-none absolute inset-0 opacity-[0.14] [background-image:radial-gradient(rgba(48,255,220,0.72)_1px,transparent_1px)] [background-size:38px_38px]" />
+        <div className="pointer-events-none absolute left-[48%] top-[8%] h-[38rem] w-[38rem] rounded-full border border-[#14f1d3]/10" />
+        <div className="pointer-events-none absolute left-[52%] top-[14%] h-[28rem] w-[28rem] rounded-full border border-[#14f1d3]/12" />
+
+        <div className="relative mx-auto grid min-h-[calc(100svh-7.5rem)] max-w-[92rem] items-center gap-8 px-4 pb-6 pt-32 sm:px-6 lg:grid-cols-[0.94fr_1.06fr] lg:px-8 lg:pt-24 xl:gap-10">
           <m.div
-            className="absolute left-1/2 top-24 h-64 w-64 -translate-x-1/2 rounded-full bg-[#d6a857]/18 blur-[120px] sm:h-80 sm:w-80"
-            animate={
-              prefersReducedMotion
-                ? undefined
-                : { y: [0, -18, 0], scale: [1, 1.06, 1], opacity: [0.14, 0.22, 0.14] }
-            }
-            transition={{
-              duration: 7,
-              repeat: prefersReducedMotion ? 0 : Infinity,
-              ease: "easeInOut"
-            }}
-          />
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-20"
+          >
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#14f1d3]/10 bg-[#0af0d0]/[0.08] px-4 py-2 text-xs font-bold text-[#2ff7d7] shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_38px_-28px_rgba(20,241,211,0.8)]">
+              <span className="h-2 w-2 rounded-full bg-[#14f1d3] shadow-[0_0_16px_rgba(20,241,211,0.9)]" />
+              Jharkhand&apos;s Digital Ecosystem Platform
+            </div>
+
+            <h1 className="mt-7 max-w-3xl font-heading text-5xl font-black leading-[1.04] tracking-normal text-white sm:text-6xl lg:text-7xl xl:text-[5.35rem]">
+              Jharkhand&apos;s
+              <span className="block">Tech Ecosystem,</span>
+              <span className="block bg-gradient-to-r from-[#19f5cf] to-[#10cbb7] bg-clip-text text-transparent">
+                Mapped.
+              </span>
+            </h1>
+
+            <p className="mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+              Discover colleges, startups, builders, jobs, events and
+              opportunities shaping Jharkhand&apos;s digital future.
+            </p>
+
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <Link
+                href="#platform-overview"
+                className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl bg-[#11e2c4] px-7 py-4 text-sm font-black text-[#031018] shadow-[0_20px_56px_-28px_rgba(17,226,196,0.9)] transition hover:-translate-y-0.5 hover:bg-[#20f4d0]"
+              >
+                Explore Ecosystem
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="#get-listed"
+                className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl border border-white/14 bg-white/[0.035] px-7 py-4 text-sm font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-[#14f1d3]/35 hover:bg-white/[0.06]"
+              >
+                <Building2 className="h-4 w-4 text-[#35f6d8]" />
+                Get Listed
+              </Link>
+            </div>
+
+            <div className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
+              {stats.map((item, index) => {
+                const Icon = item.icon;
+
+                return (
+                  <m.div
+                    key={item.label}
+                    initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.18 + index * 0.06, duration: 0.45 }}
+                    className="rounded-2xl border border-[#14f1d3]/18 bg-white/[0.035] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_18px_54px_-36px_rgba(20,241,211,0.65)] backdrop-blur-xl xl:p-5"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#14f1d3]/10 text-[#20f4d0] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                        <Icon className="h-5 w-5 xl:h-6 xl:w-6" />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block font-heading text-2xl font-black text-white">{item.value}</span>
+                        <span className="block text-xs leading-5 text-slate-400 xl:text-sm">{item.label}</span>
+                      </span>
+                    </div>
+                  </m.div>
+                );
+              })}
+            </div>
+          </m.div>
+
           <m.div
-            className="absolute bottom-10 left-1/2 h-56 w-56 -translate-x-1/2 rounded-full bg-[#9e4e2d]/18 blur-[120px]"
-            animate={
-              prefersReducedMotion
-                ? undefined
-                : { x: [0, 18, 0], opacity: [0.1, 0.16, 0.1] }
-            }
-            transition={{
-              duration: 9,
-              repeat: prefersReducedMotion ? 0 : Infinity,
-              ease: "easeInOut"
-            }}
-          />
+            initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.94, x: 30 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-10 flex items-center justify-center"
+          >
+            <div className="relative w-full max-w-[44.25rem] overflow-hidden rounded-[1.4rem] border border-[#14f1d3]/38 bg-[#06121c]/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_0_72px_-24px_rgba(20,241,211,0.75)]">
+              <Image
+                src="/media/hero/herorighht.png"
+                alt="Jharkhand digital ecosystem map"
+                width={1254}
+                height={1254}
+                priority
+                sizes="(min-width: 1280px) 48vw, (min-width: 1024px) 52vw, 96vw"
+                className="h-auto w-full object-contain"
+              />
+            </div>
+          </m.div>
         </div>
 
-        <div className="relative px-4 pb-20 pt-28 sm:px-10 sm:pb-24 sm:pt-32">
-          <div className="mx-auto flex min-h-[88svh] max-w-5xl flex-col items-center justify-center text-center">
-            <m.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, ease: "easeOut" }}
-              className="inline-flex items-center rounded-full border border-[#f7f0e3]/12 bg-[#f7f0e3]/[0.06] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#dbc4a0] backdrop-blur"
-            >
-              Jharkhand • Since {JHARKHAND_FOUNDATION_LABEL}
-            </m.div>
+        <div className="relative mx-auto max-w-[92rem] px-4 pb-6 sm:px-6 lg:px-8">
+          <div className="grid gap-4 rounded-2xl border border-white/10 bg-white/[0.035] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl sm:grid-cols-2 lg:grid-cols-4">
+            {trustItems.map((item, index) => {
+              const Icon = item.icon;
 
-            <m.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.08, ease: "easeOut" }}
-              className="relative mt-8 w-full max-w-2xl"
-            >
-              <div className="rounded-[1.75rem] border border-[#f7f0e3]/10 bg-[#f7f0e3]/[0.06] px-5 py-5 shadow-[0_24px_60px_-36px_rgba(15,28,21,0.45)] backdrop-blur-sm sm:px-8">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#c8ae86]">
-                  Timeline
-                </p>
-
-                <div className="mt-4 min-h-[4.5rem] sm:min-h-[5.5rem]" aria-live="polite">
-                  <AnimatePresence mode="wait">
-                    {showLiveTimer ? (
-                      <m.div
-                        key="live-timer"
-                        initial={prefersReducedMotion ? false : { opacity: 0, y: 18, filter: "blur(10px)" }}
-                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                        exit={{ opacity: 0, y: -12, filter: "blur(10px)" }}
-                        transition={{ duration: 0.35, ease: "easeOut" }}
-                        className="flex flex-col items-center gap-2"
-                      >
-                        <p className="text-lg font-semibold tracking-[-0.04em] text-[#f8f0e3] sm:text-2xl">
-                          {durationLabel}
-                        </p>
-                        <p className="text-xl font-medium tracking-[0.22em] text-[#dbc4a0] sm:text-2xl">
-                          {clockLabel}
-                        </p>
-                      </m.div>
-                    ) : (
-                      <m.div
-                        key={`timeline-${timelineMilestones[timelineIndex]}`}
-                        initial={prefersReducedMotion ? false : { opacity: 0, y: 18, filter: "blur(10px)" }}
-                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                        exit={{ opacity: 0, y: -18, filter: "blur(10px)" }}
-                        transition={{ duration: 0.24, ease: "easeOut" }}
-                        className="relative flex items-center justify-center"
-                      >
-                        <span className="text-4xl font-semibold tracking-[-0.08em] text-[#f8f0e3] sm:text-5xl lg:text-6xl">
-                          {timelineMilestones[timelineIndex]}
-                        </span>
-                        <m.span
-                          aria-hidden="true"
-                          className="pointer-events-none absolute inset-0 text-4xl font-semibold tracking-[-0.08em] text-[#d6a857]/15 sm:text-5xl lg:text-6xl"
-                          animate={
-                            prefersReducedMotion
-                              ? undefined
-                              : { x: [0, -1, 1, 0], opacity: [0.05, 0.12, 0.07, 0.05] }
-                          }
-                          transition={{
-                            duration: 0.18,
-                            repeat: prefersReducedMotion ? 0 : Infinity,
-                            repeatDelay: 0.22,
-                            ease: "linear"
-                          }}
-                        >
-                          {timelineMilestones[timelineIndex]}
-                        </m.span>
-                      </m.div>
-                    )}
-                  </AnimatePresence>
+              return (
+                <div
+                  key={item.title}
+                  className={`flex items-center gap-4 ${index > 0 ? "lg:border-l lg:border-white/10 lg:pl-8" : ""}`}
+                >
+                  <Icon className="h-9 w-9 text-[#20f4d0]" />
+                  <span>
+                    <span className="block text-sm font-bold text-white">{item.title}</span>
+                    <span className="block text-sm text-slate-400">{item.subtitle}</span>
+                  </span>
                 </div>
-              </div>
-            </m.div>
-
-            <m.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
-              className="relative mt-10 max-w-4xl"
-            >
-              <div className="absolute inset-x-10 top-4 h-24 rounded-full bg-[#d6a857]/14 blur-[100px]" />
-              <h1 className="relative text-3xl font-semibold tracking-[-0.06em] text-[#f8f0e3] sm:text-5xl lg:text-7xl">
-                Building Jharkhand&apos;s Tech Future
-                <span className="block">Together 🚀</span>
-              </h1>
-            </m.div>
-
-            <m.p
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.24, ease: "easeOut" }}
-              className="mt-6 max-w-2xl text-base leading-8 text-[#d8c2a0] sm:text-lg"
-            >
-              An open-source platform where developers, students, and creators
-              contribute, build, and grow together.
-            </m.p>
-
-            <m.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.32, ease: "easeOut" }}
-              className="mt-10 flex w-full max-w-xl flex-col gap-4 sm:flex-row sm:justify-center"
-            >
-              <m.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
-                <Link
-                  href="/contribute"
-                  className="inline-flex w-full items-center justify-center rounded-full border border-[#d6a857] bg-[#d6a857] px-6 py-3.5 text-sm font-semibold text-[#173628] shadow-[0_24px_46px_-30px_rgba(214,168,87,0.52)] transition hover:bg-[#c2974f] sm:w-auto"
-                >
-                  Start Contributing
-                </Link>
-              </m.div>
-
-              <m.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
-                <Link
-                  href="#platform-overview"
-                  className="inline-flex w-full items-center justify-center rounded-full border border-[#f7f0e3]/18 bg-[#f7f0e3]/[0.06] px-6 py-3.5 text-sm font-semibold text-[#f8f0e3] shadow-[0_18px_36px_-28px_rgba(15,28,21,0.4)] transition hover:border-[#d6a857]/35 hover:bg-[#f7f0e3]/[0.1] sm:w-auto"
-                >
-                  Explore Platform
-                </Link>
-              </m.div>
-            </m.div>
-
-            <m.p
-              initial={prefersReducedMotion ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.42, ease: "easeOut" }}
-              className="mt-8 rounded-full border border-[#f7f0e3]/10 bg-[#f7f0e3]/[0.06] px-4 py-2 text-sm text-[#d8c2a0]"
-            >
-              Open-source • MIT Licensed • No fees • Real contributors
-            </m.p>
+              );
+            })}
           </div>
         </div>
       </section>

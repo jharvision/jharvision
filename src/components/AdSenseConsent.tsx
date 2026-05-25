@@ -46,27 +46,41 @@ function loadAdSense() {
   document.head.appendChild(script);
 }
 
+function runWhenIdle(callback: () => void) {
+  if ("requestIdleCallback" in window) {
+    const idleId = window.requestIdleCallback(callback, { timeout: 2200 });
+
+    return () => window.cancelIdleCallback(idleId);
+  }
+
+  const timeoutId = globalThis.setTimeout(callback, 900);
+
+  return () => globalThis.clearTimeout(timeoutId);
+}
+
 export function AdSenseConsent() {
   const [isVisible, setIsVisible] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [personalizedAds, setPersonalizedAds] = useState(true);
 
   useEffect(() => {
-    const savedConsent = window.localStorage.getItem(CONSENT_STORAGE_KEY) as
-      | ConsentState
-      | null;
+    return runWhenIdle(() => {
+      const savedConsent = window.localStorage.getItem(CONSENT_STORAGE_KEY) as
+        | ConsentState
+        | null;
 
-    if (savedConsent) {
-      updateGoogleConsent(savedConsent);
+      if (savedConsent) {
+        updateGoogleConsent(savedConsent);
 
-      if (savedConsent === "granted") {
-        loadAdSense();
+        if (savedConsent === "granted") {
+          loadAdSense();
+        }
+
+        return;
       }
 
-      return;
-    }
-
-    setIsVisible(true);
+      setIsVisible(true);
+    });
   }, []);
 
   function saveConsent(consent: ConsentState) {
