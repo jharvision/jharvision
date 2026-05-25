@@ -84,26 +84,29 @@ export function AdSenseConsent() {
   }
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-end justify-center bg-slate-950/45 px-4 py-5 backdrop-blur-sm sm:items-center">
-      <div className="w-full max-w-3xl overflow-hidden rounded-lg border border-slate-200 bg-white text-slate-950 shadow-2xl">
-        <div className="flex gap-4 px-5 py-5 sm:px-7">
-          <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-500 text-sm font-bold text-white">
-            !
-          </div>
-
-          <div className="min-w-0 flex-1">
-            <h2 className="text-base font-semibold sm:text-lg">
-              Create a consent message for your sites
-            </h2>
-            <p className="mt-3 text-sm leading-6 text-slate-700">
-              We use Google AdSense to show ads. You can choose whether we may
-              use ad cookies and identifiers to support personalized ads on
-              JharVision.
-            </p>
+    <div className="fixed inset-x-0 bottom-0 z-[100] px-3 pb-3 sm:px-5 sm:pb-5">
+      <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-lg border border-slate-200 bg-white text-slate-950 shadow-[0_24px_70px_-28px_rgba(15,23,42,0.45)]">
+        <div className="grid gap-4 px-4 py-4 sm:px-5 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div className="min-w-0">
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
+                i
+              </div>
+              <div>
+                <h2 className="text-sm font-semibold sm:text-base">
+                  Ad privacy choices
+                </h2>
+                <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-600">
+                  JharVision uses Google AdSense to keep the site supported. You
+                  can allow ad cookies for better ads, reject them, or manage
+                  your choice anytime before continuing.
+                </p>
+              </div>
+            </div>
 
             {showOptions ? (
-              <div className="mt-5 rounded-md border border-slate-200 bg-slate-50 p-4">
-                <label className="flex items-start gap-3 text-sm text-slate-700">
+              <div className="mt-4 rounded-md border border-slate-200 bg-slate-50 p-3 sm:max-w-2xl">
+                <label className="flex items-start gap-3 text-sm leading-6 text-slate-700">
                   <input
                     checked={personalizedAds}
                     className="mt-1 h-4 w-4 rounded border-slate-300"
@@ -119,64 +122,44 @@ export function AdSenseConsent() {
                 </label>
               </div>
             ) : (
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                <button
-                  className="rounded-lg border border-slate-200 bg-white p-4 text-left transition hover:border-blue-300 hover:bg-blue-50"
-                  onClick={() => setShowOptions(true)}
-                  type="button"
-                >
-                  <span className="block h-20 rounded-md border border-slate-200 bg-slate-50 p-4">
-                    <span className="mb-3 block h-3 w-24 rounded bg-slate-200" />
-                    <span className="mb-2 block h-px bg-slate-300" />
-                    <span className="mb-2 block h-px bg-slate-300" />
-                    <span className="block h-px w-3/4 bg-slate-300" />
-                  </span>
-                  <span className="mt-3 block text-sm font-medium">
-                    Manage options before choosing consent.
-                  </span>
-                </button>
-
-                <button
-                  className="rounded-lg border border-slate-200 bg-white p-4 text-left transition hover:border-blue-300 hover:bg-blue-50"
-                  onClick={() => saveConsent("granted")}
-                  type="button"
-                >
-                  <span className="flex h-20 items-center justify-center rounded-md border border-slate-200 bg-slate-50 text-3xl font-bold text-blue-600">
-                    G
-                  </span>
-                  <span className="mt-3 block text-sm font-medium">
-                    Consent to Google AdSense ads for this site.
-                  </span>
-                </button>
-              </div>
+              <p className="mt-3 text-xs leading-5 text-slate-500">
+                This choice controls AdSense script loading on this browser.
+              </p>
             )}
           </div>
-        </div>
 
-        <div className="flex flex-col-reverse gap-3 border-t border-slate-200 bg-slate-50 px-5 py-4 sm:flex-row sm:items-center sm:justify-end sm:px-7">
-          <button
-            className="rounded-md px-4 py-2 text-sm font-semibold text-blue-600 transition hover:bg-blue-50"
-            onClick={() => setIsVisible(false)}
-            type="button"
-          >
-            Remind me later
-          </button>
-          <button
-            className="rounded-md px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-200"
-            onClick={() => saveConsent("denied")}
-            type="button"
-          >
-            Do not consent
-          </button>
-          <button
-            className="rounded-md bg-blue-600 px-6 py-2 text-sm font-semibold text-white transition hover:bg-blue-700"
-            onClick={() =>
-              saveConsent(personalizedAds ? "granted" : "denied")
-            }
-            type="button"
-          >
-            Submit
-          </button>
+          <div className="grid gap-2 sm:grid-cols-4 lg:min-w-[560px]">
+            <button
+              className="rounded-md px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100"
+              onClick={() => setIsVisible(false)}
+              type="button"
+            >
+              Later
+            </button>
+            <button
+              className="rounded-md border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+              onClick={() => setShowOptions((current) => !current)}
+              type="button"
+            >
+              Options
+            </button>
+            <button
+              className="rounded-md border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+              onClick={() => saveConsent("denied")}
+              type="button"
+            >
+              Reject
+            </button>
+            <button
+              className="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700"
+              onClick={() =>
+                saveConsent(personalizedAds ? "granted" : "denied")
+              }
+              type="button"
+            >
+              Accept
+            </button>
+          </div>
         </div>
       </div>
     </div>
