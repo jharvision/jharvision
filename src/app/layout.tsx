@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Space_Grotesk } from "next/font/google";
 
+import { AdSenseConsent } from "@/components/AdSenseConsent";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { siteConfig } from "@/lib/site";
@@ -63,17 +64,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3804157707008101"
-        crossOrigin="anonymous"
-      />
       <body className={`${bodyFont.variable} ${headingFont.variable}`}>
         <div className="flex min-h-screen flex-col">
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
+        <AdSenseConsent />
       </body>
     </html>
   );
