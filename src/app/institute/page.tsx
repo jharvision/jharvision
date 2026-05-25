@@ -270,7 +270,7 @@ export default function InstitutesPage() {
           Academic <span className="text-gray-300 font-light italic">Ecosystem</span>
         </h1>
         <p className="text-gray-400 text-sm md:text-base max-w-lg mx-auto">
-          Exploring the premier technical institutions shaping Jharkhand's digital future.
+          Exploring the premier technical institutions shaping Jharkhand&apos;s digital future.
         </p>
       </section>
 

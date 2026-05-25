@@ -6,10 +6,7 @@ import { ContributorsGrid } from "@/components/contributors/ContributorsGrid";
 import { ContributorsNotice } from "@/components/contributors/ContributorsNotice";
 import { TopContributorHighlight } from "@/components/contributors/TopContributorHighlight";
 import { SectionHeading } from "@/components/SectionHeading";
-import {
-  CONTRIBUTORS_REVALIDATE_SECONDS,
-  getContributors
-} from "@/lib/github";
+import { getContributors } from "@/lib/github";
 
 export const metadata: Metadata = {
   title: "Top Contributors",
@@ -17,7 +14,7 @@ export const metadata: Metadata = {
     "Meet the GitHub contributors helping build JharVision and moving Jharkhand's tech future forward."
 };
 
-export const revalidate = CONTRIBUTORS_REVALIDATE_SECONDS;
+export const revalidate = 3600;
 
 export default async function ContributorsPage() {
   const { contributors, error, repository } = await getContributors();

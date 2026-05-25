@@ -63,6 +63,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3804157707008101"
+        crossOrigin="anonymous"
+      />
       <body className={`${bodyFont.variable} ${headingFont.variable}`}>
         <div className="flex min-h-screen flex-col">
           <Navbar />
