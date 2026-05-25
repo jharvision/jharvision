@@ -8,12 +8,12 @@ import { useEffect, useState } from "react";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/institute", label: "Colleges" },
-  { href: "#startups", label: "Startups" },
-  { href: "#jobs", label: "Jobs" },
-  { href: "#events", label: "Events" },
-  { href: "/tech-updates", label: "News" },
-  { href: "/contributors", label: "Builders" }
+  { href: "/colleges", label: "Colleges" },
+  { href: "/startups", label: "Startups" },
+  { href: "/jobs", label: "Jobs" },
+  { href: "/events", label: "Events" },
+  { href: "/news", label: "News" },
+  { href: "/builders", label: "Builders" }
 ] as const;
 
 function isActivePath(pathname: string, href: string) {
@@ -118,13 +118,13 @@ export function Navbar() {
 
           <div className="hidden items-center gap-4 lg:flex">
             <Link
-              href="#get-listed"
+              href="/contribute"
               className="inline-flex min-h-11 items-center justify-center rounded-2xl border border-white/12 bg-white/[0.025] px-6 text-sm font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition hover:border-[#14f1d3]/35 hover:bg-white/[0.05]"
             >
               Get Listed
             </Link>
             <Link
-              href="#platform-overview"
+              href="/#ecosystem-discovery"
               className="group inline-flex min-h-11 items-center justify-center gap-3 rounded-2xl bg-[#11e2c4] px-6 text-sm font-black text-[#031018] shadow-[0_18px_48px_-26px_rgba(17,226,196,0.95)] transition hover:-translate-y-0.5 hover:bg-[#20f4d0]"
             >
               Explore Ecosystem
@@ -169,13 +169,13 @@ export function Navbar() {
               })}
               <div className="mt-2 grid gap-2 sm:grid-cols-2">
                 <Link
-                  href="#get-listed"
+                  href="/contribute"
                   className="flex min-h-12 items-center justify-center rounded-xl border border-white/12 bg-white/[0.035] text-sm font-bold text-white"
                 >
                   Get Listed
                 </Link>
                 <Link
-                  href="#platform-overview"
+                  href="/#ecosystem-discovery"
                   className="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#11e2c4] text-sm font-black text-[#031018]"
                 >
                   Explore Ecosystem

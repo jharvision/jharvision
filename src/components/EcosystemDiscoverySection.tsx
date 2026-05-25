@@ -17,42 +17,42 @@ const categories = [
     title: "Colleges & Universities",
     count: "250+ Colleges",
     description: "Explore institutions shaping Jharkhand's technical foundation.",
-    href: "/institute",
+    href: "/colleges",
     icon: GraduationCap
   },
   {
     title: "Startups & Innovation",
     count: "120+ Startups",
     description: "Discover emerging companies, products, and local innovation.",
-    href: "#startups",
+    href: "/startups",
     icon: Rocket
   },
   {
     title: "Jobs & Opportunities",
     count: "1000+ Jobs",
     description: "Find roles, internships, fellowships, and ecosystem opportunities.",
-    href: "#jobs",
+    href: "/jobs",
     icon: BriefcaseBusiness
   },
   {
     title: "Builders & Talent",
     count: "800+ Builders",
     description: "Meet developers, designers, founders, creators, and operators.",
-    href: "/contributors",
+    href: "/builders",
     icon: Users
   },
   {
     title: "Events & Hackathons",
     count: "50+ Events",
     description: "Track meetups, hackathons, startup events, and community moments.",
-    href: "#events",
+    href: "/events",
     icon: CalendarDays
   },
   {
     title: "Incubators & Hubs",
     count: "20+ Hubs",
     description: "Navigate support networks, incubators, labs, and innovation spaces.",
-    href: "#incubators",
+    href: "/startups",
     icon: Building2
   }
 ] as const;
